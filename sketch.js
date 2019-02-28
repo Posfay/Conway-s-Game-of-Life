@@ -176,7 +176,7 @@ function mousePrsd() {
     grid[(col+17+cols)%cols][(row-2+rows)%rows] = 1;
     grid[(col+17+cols)%cols][(row-1+rows)%rows] = 1;
 
-  } else if (drawTool == 4) {
+  } else if (drawTool == 5) {
     grid[(col-3+cols)%cols][(row+rows)%rows] = 1;
     grid[(col-2+cols)%cols][(row+rows)%rows] = 1;
     grid[(col-2+cols)%cols][(row+1+rows)%rows] = 1;
@@ -186,7 +186,7 @@ function mousePrsd() {
     grid[(col+4+cols)%cols][(row+1+rows)%rows] = 1;
     grid[(col+3+cols)%cols][(row-2+rows)%rows] = 1;
 
-  } else if (drawTool == 5) {
+  } else if (drawTool == 4) {
     grid[(col+18+cols)%cols][(row+rows)%rows] = 1;
     grid[(col+17+cols)%cols][(row+rows)%rows] = 1;
     grid[(col+18+cols)%cols][(row+1+rows)%rows] = 1;
