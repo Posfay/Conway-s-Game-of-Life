@@ -235,7 +235,7 @@ function mousePrsd() {
     grid[(col+cols)%cols][(row+5+rows)%rows] = 0;
     
   } else if (drawTool == 7) {
-    grid[(col+cols)%cols][(row-1+rows)%rows] = 1;
+    grid[(col+cols)%cols][(row+rows)%rows] = 1;
     grid[(col-1+cols)%cols][(row+1+rows)%rows] = 1;
     grid[(col+1+cols)%cols][(row+1+rows)%rows] = 1;
     grid[(col-1+cols)%cols][(row+2+rows)%rows] = 1;
