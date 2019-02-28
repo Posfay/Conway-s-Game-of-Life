@@ -108,8 +108,8 @@ function keyPressed() {
     p2.html("Pentadecathlon");
 
   } else if (key == "7") {
-    drawTool = 4;
-    p2.html("Die Hard");
+    drawTool = 7;
+    p2.html("Beehive");
 
   }
 }
@@ -233,13 +233,14 @@ function mousePrsd() {
 
     grid[(col+cols)%cols][(row+rows)%rows] = 0;
     grid[(col+cols)%cols][(row+5+rows)%rows] = 0;
+    
   } else if (drawTool == 7) {
-    grid[(col+cols)%cols][(row+rows)%rows] = 1;
-    grid[(col+cols)%cols][(row+rows)%rows] = 1;
-    grid[(col+cols)%cols][(row+rows)%rows] = 1;
-    grid[(col+cols)%cols][(row+rows)%rows] = 1;
-    grid[(col+cols)%cols][(row+rows)%rows] = 1;
-    grid[(col+cols)%cols][(row+rows)%rows] = 1;
+    grid[(col+cols)%cols][(row-1+rows)%rows] = 1;
+    grid[(col-1+cols)%cols][(row+1+rows)%rows] = 1;
+    grid[(col+1+cols)%cols][(row+1+rows)%rows] = 1;
+    grid[(col-1+cols)%cols][(row+2+rows)%rows] = 1;
+    grid[(col+1+cols)%cols][(row+2+rows)%rows] = 1;
+    grid[(col+cols)%cols][(row+3+rows)%rows] = 1;
   }
 }
 
