@@ -8,6 +8,7 @@ let cnv;
 let cols, rows;
 let p, p2;
 let btn;
+let col, row;
 let drawTool = 1;      // 1 = single;  2 = glider;  3 = glider gun;
 
 
@@ -116,8 +117,8 @@ function keyPressed() {
 
 function mousePrsd() {
 
-  let col = floor(mouseX / RESOLUTION);
-  let row = floor(mouseY / RESOLUTION);
+  col = floor(mouseX / RESOLUTION);
+  row = floor(mouseY / RESOLUTION);
 
   if (drawTool == 1) {            //Single
     if (grid[col][row] == 1) {
@@ -127,102 +128,102 @@ function mousePrsd() {
     }
 
   } else if (drawTool == 2) {     //Glider
-    grid[(col-1+cols)%cols][(row+rows)%rows] = 1;
-    grid[(col+cols)%cols][(row+1+rows)%rows] = 1;
-    grid[(col+1+cols)%cols][(row-1+rows)%rows] = 1;
-    grid[(col+1+cols)%cols][(row+rows)%rows] = 1;
-    grid[(col+1+cols)%cols][(row+1+rows)%rows] = 1;
+    cp(-1,0,1);
+    cp(0,1,1);
+    cp(1,-1,1);
+    cp(1,0,1);
+    cp(1,1,1);
 
-    grid[(col+cols)%cols][(row+rows)%rows] = 0;
-    grid[(col+cols)%cols][(row-1+rows)%rows] = 0;
-    grid[(col-1+cols)%cols][(row+1+rows)%rows] = 0;
-    grid[(col-1+cols)%cols][(row-1+rows)%rows] = 0;
+    cp(0,0,0);
+    cp(0,-1,0);
+    cp(-1,1,0);
+    cp(-1,-1,0);
 
   } else if (drawTool == 3) {     //Gosper Glider Gun
-    grid[(col-18+cols)%cols][(row+rows)%rows] = 1;
-    grid[(col-17+cols)%cols][(row+rows)%rows] = 1;
-    grid[(col-18+cols)%cols][(row+1+rows)%rows] = 1;
-    grid[(col-17+cols)%cols][(row+1+rows)%rows] = 1;
-    grid[(col-8+cols)%cols][(row+rows)%rows] = 1;
-    grid[(col-8+cols)%cols][(row+1+rows)%rows] = 1;
-    grid[(col-8+cols)%cols][(row+2+rows)%rows] = 1;
-    grid[(col-7+cols)%cols][(row-1+rows)%rows] = 1;
-    grid[(col-7+cols)%cols][(row+3+rows)%rows] = 1;
-    grid[(col-6+cols)%cols][(row-2+rows)%rows] = 1;
-    grid[(col-6+cols)%cols][(row+4+rows)%rows] = 1;
-    grid[(col-5+cols)%cols][(row-2+rows)%rows] = 1;
-    grid[(col-5+cols)%cols][(row+4+rows)%rows] = 1;
-    grid[(col-4+cols)%cols][(row+1+rows)%rows] = 1;
-    grid[(col-3+cols)%cols][(row-1+rows)%rows] = 1;
-    grid[(col-3+cols)%cols][(row+3+rows)%rows] = 1;
-    grid[(col-2+cols)%cols][(row+rows)%rows] = 1;
-    grid[(col-2+cols)%cols][(row+1+rows)%rows] = 1;
-    grid[(col-2+cols)%cols][(row+2+rows)%rows] = 1;
-    grid[(col-1+cols)%cols][(row+1+rows)%rows] = 1;
-    grid[(col+2+cols)%cols][(row-2+rows)%rows] = 1;
-    grid[(col+2+cols)%cols][(row-1+rows)%rows] = 1;
-    grid[(col+2+cols)%cols][(row+rows)%rows] = 1;
-    grid[(col+3+cols)%cols][(row-2+rows)%rows] = 1;
-    grid[(col+3+cols)%cols][(row-1+rows)%rows] = 1;
-    grid[(col+3+cols)%cols][(row+rows)%rows] = 1;
-    grid[(col+4+cols)%cols][(row-3+rows)%rows] = 1;
-    grid[(col+4+cols)%cols][(row+1+rows)%rows] = 1;
-    grid[(col+6+cols)%cols][(row-4+rows)%rows] = 1;
-    grid[(col+6+cols)%cols][(row-3+rows)%rows] = 1;
-    grid[(col+6+cols)%cols][(row+1+rows)%rows] = 1;
-    grid[(col+6+cols)%cols][(row+2+rows)%rows] = 1;
-    grid[(col+16+cols)%cols][(row-2+rows)%rows] = 1;
-    grid[(col+16+cols)%cols][(row-1+rows)%rows] = 1;
-    grid[(col+17+cols)%cols][(row-2+rows)%rows] = 1;
-    grid[(col+17+cols)%cols][(row-1+rows)%rows] = 1;
+    cp(-18,0,1);
+    cp(-17,0,1);
+    cp(-18,1,1);
+    cp(-17,1,1);
+    cp(-8,0,1);
+    cp(-8,1,1);
+    cp(-8,2,1);
+    cp(-7,-1,1);
+    cp(-7,3,1);
+    cp(-6,-2,1);
+    cp(-6,4,1);
+    cp(-5,-2,1);
+    cp(-5,4,1);
+    cp(-4,1,1);
+    cp(-3,-1,1);
+    cp(-3,3,1);
+    cp(-2,0,1);
+    cp(-2,1,1);
+    cp(-2,2,1);
+    cp(-1,1,1);
+    cp(2,-2,1);
+    cp(2,-1,1);
+    cp(2,0,1);
+    cp(3,-2,1);
+    cp(3,-1,1);
+    cp(3,0,1);
+    cp(4,-3,1);
+    cp(4,1,1);
+    cp(6,-4,1);
+    cp(6,-3,1);
+    cp(6,1,1);
+    cp(6,2,1);
+    cp(16,-2,1);
+    cp(16,-1,1);
+    cp(17,-2,1);
+    cp(17,-1,1);
 
   } else if (drawTool == 5) {
-    grid[(col-3+cols)%cols][(row+rows)%rows] = 1;
-    grid[(col-2+cols)%cols][(row+rows)%rows] = 1;
-    grid[(col-2+cols)%cols][(row+1+rows)%rows] = 1;
-    grid[(col+3+cols)%cols][(row+rows)%rows] = 1;
-    grid[(col+2+cols)%cols][(row+1+rows)%rows] = 1;
-    grid[(col+3+cols)%cols][(row+1+rows)%rows] = 1;
-    grid[(col+4+cols)%cols][(row+1+rows)%rows] = 1;
-    grid[(col+3+cols)%cols][(row-2+rows)%rows] = 1;
+    cp(-3,0,1);
+    cp(-2,0,1);
+    cp(-2,1,1);
+    cp(3,0,1);
+    cp(2,1,1);
+    cp(3,1,1);
+    cp(4,1,1);
+    cp(3,-2,1);
 
   } else if (drawTool == 4) {
-    grid[(col+18+cols)%cols][(row+rows)%rows] = 1;
-    grid[(col+17+cols)%cols][(row+rows)%rows] = 1;
-    grid[(col+18+cols)%cols][(row+1+rows)%rows] = 1;
-    grid[(col+17+cols)%cols][(row+1+rows)%rows] = 1;
-    grid[(col+8+cols)%cols][(row+rows)%rows] = 1;
-    grid[(col+8+cols)%cols][(row+1+rows)%rows] = 1;
-    grid[(col+8+cols)%cols][(row+2+rows)%rows] = 1;
-    grid[(col+7+cols)%cols][(row-1+rows)%rows] = 1;
-    grid[(col+7+cols)%cols][(row+3+rows)%rows] = 1;
-    grid[(col+6+cols)%cols][(row-2+rows)%rows] = 1;
-    grid[(col+6+cols)%cols][(row+4+rows)%rows] = 1;
-    grid[(col+5+cols)%cols][(row-2+rows)%rows] = 1;
-    grid[(col+5+cols)%cols][(row+4+rows)%rows] = 1;
-    grid[(col+4+cols)%cols][(row+1+rows)%rows] = 1;
-    grid[(col+3+cols)%cols][(row-1+rows)%rows] = 1;
-    grid[(col+3+cols)%cols][(row+3+rows)%rows] = 1;
-    grid[(col+2+cols)%cols][(row+rows)%rows] = 1;
-    grid[(col+2+cols)%cols][(row+1+rows)%rows] = 1;
-    grid[(col+2+cols)%cols][(row+2+rows)%rows] = 1;
-    grid[(col+1+cols)%cols][(row+1+rows)%rows] = 1;
-    grid[(col-2+cols)%cols][(row-2+rows)%rows] = 1;
-    grid[(col-2+cols)%cols][(row-1+rows)%rows] = 1;
-    grid[(col-2+cols)%cols][(row+rows)%rows] = 1;
-    grid[(col-3+cols)%cols][(row-2+rows)%rows] = 1;
-    grid[(col-3+cols)%cols][(row-1+rows)%rows] = 1;
-    grid[(col-3+cols)%cols][(row+rows)%rows] = 1;
-    grid[(col-4+cols)%cols][(row-3+rows)%rows] = 1;
-    grid[(col-4+cols)%cols][(row+1+rows)%rows] = 1;
-    grid[(col-6+cols)%cols][(row-4+rows)%rows] = 1;
-    grid[(col-6+cols)%cols][(row-3+rows)%rows] = 1;
-    grid[(col-6+cols)%cols][(row+1+rows)%rows] = 1;
-    grid[(col-6+cols)%cols][(row+2+rows)%rows] = 1;
-    grid[(col-16+cols)%cols][(row-2+rows)%rows] = 1;
-    grid[(col-16+cols)%cols][(row-1+rows)%rows] = 1;
-    grid[(col-17+cols)%cols][(row-2+rows)%rows] = 1;
-    grid[(col-17+cols)%cols][(row-1+rows)%rows] = 1;
+    cpj(-18,0,1);
+    cpj(-17,0,1);
+    cpj(-18,1,1);
+    cpj(-17,1,1);
+    cpj(-8,0,1);
+    cpj(-8,1,1);
+    cpj(-8,2,1);
+    cpj(-7,-1,1);
+    cpj(-7,3,1);
+    cpj(-6,-2,1);
+    cpj(-6,4,1);
+    cpj(-5,-2,1);
+    cpj(-5,4,1);
+    cpj(-4,1,1);
+    cpj(-3,-1,1);
+    cpj(-3,3,1);
+    cpj(-2,0,1);
+    cpj(-2,1,1);
+    cpj(-2,2,1);
+    cpj(-1,1,1);
+    cpj(2,-2,1);
+    cpj(2,-1,1);
+    cpj(2,0,1);
+    cpj(3,-2,1);
+    cpj(3,-1,1);
+    cpj(3,0,1);
+    cpj(4,-3,1);
+    cpj(4,1,1);
+    cpj(6,-4,1);
+    cpj(6,-3,1);
+    cpj(6,1,1);
+    cpj(6,2,1);
+    cpj(16,-2,1);
+    cpj(16,-1,1);
+    cpj(17,-2,1);
+    cpj(17,-1,1);
 
   } else if (drawTool == 6) {
     for (let i = -1; i < 2; i++) {
@@ -233,7 +234,7 @@ function mousePrsd() {
 
     grid[(col+cols)%cols][(row+rows)%rows] = 0;
     grid[(col+cols)%cols][(row+5+rows)%rows] = 0;
-    
+
   } else if (drawTool == 7) {
     grid[(col+cols)%cols][(row+rows)%rows] = 1;
     grid[(col-1+cols)%cols][(row+1+rows)%rows] = 1;
@@ -294,4 +295,24 @@ function create2DArray(c, r) {
   }
 
   return arr;
+}
+
+
+function cp(c, r, st) {    //col, row, state
+  grid[(col + c + cols) % cols][(row + r + rows) % rows] = st;
+}
+
+//90 degrees clockwise
+function cpj(c, r, st) {    //col, row, state
+  grid[(col + (-r) + cols) % cols][(row + c + rows) % rows] = st;
+}
+
+//90 degrees counter clockwise = 270 degrees clockwise
+function cpb(c, r, st) {    //col, row, state
+  grid[(col + r + cols) % cols][(row + (-c) + rows) % rows] = st;
+}
+
+//180 degrees
+function cpt(c, r, st) {    //col, row, state
+  grid[(col + (-c) + cols) % cols][(row + (-r) + rows) % rows] = st;
 }
