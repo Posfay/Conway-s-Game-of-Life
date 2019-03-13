@@ -43,14 +43,14 @@ function setup() {
 
 function draw() {
   background(0);
+  fill(255,255,0);
+  stroke(100);
+  strokeWeight(STROKEW);
 
   //drawing the grid
   for (let col = 0; col < cols; col++) {
     for (let row = 0; row < rows; row++) {
       if (grid[col][row] == 1) {
-        fill(255,255,0);
-        stroke(100);
-        strokeWeight(STROKEW);
         rect(col*RESOLUTION, row*RESOLUTION, RESOLUTION-STROKEW, RESOLUTION-STROKEW);
       }
     }
@@ -96,13 +96,13 @@ function keyPressed() {
     drawTool = 3;
     p2.html("Gosper Glider Gun");
 
-  } else if (key == "5") {
-    drawTool = 5;
-    p2.html("Die Hard");
-
   } else if (key == "4") {
     drawTool = 4;
     p2.html("Invert gun");
+
+  } else if (key == "5") {
+    drawTool = 5;
+    p2.html("Die Hard");
 
   } else if (key == "6") {
     drawTool = 6;
@@ -177,16 +177,6 @@ function mousePrsd() {
     cp(17,-2,1);
     cp(17,-1,1);
 
-  } else if (drawTool == 5) {
-    cp(-3,0,1);
-    cp(-2,0,1);
-    cp(-2,1,1);
-    cp(3,0,1);
-    cp(2,1,1);
-    cp(3,1,1);
-    cp(4,1,1);
-    cp(3,-2,1);
-
   } else if (drawTool == 4) {
     cpj(-18,0,1);
     cpj(-17,0,1);
@@ -225,6 +215,16 @@ function mousePrsd() {
     cpj(17,-2,1);
     cpj(17,-1,1);
 
+  } else if (drawTool == 5) {
+    cp(-3,0,1);
+    cp(-2,0,1);
+    cp(-2,1,1);
+    cp(3,0,1);
+    cp(2,1,1);
+    cp(3,1,1);
+    cp(4,1,1);
+    cp(3,-2,1);
+
   } else if (drawTool == 6) {
     for (let i = -1; i < 2; i++) {
       for (let j = -1; j < 7; j++) {
@@ -253,10 +253,10 @@ function generation() {
       let state = grid[col][row];
       let neighbors = countNeighbors(grid, col, row);
 
-      if (state == 0 && neighbors == 3) {
-        newGrid[col][row] = 1;
-      } else if (state == 1 && (neighbors < 2 || neighbors > 3)) {
+      if (state == 1 && (neighbors < 2 || neighbors > 3)) {
         newGrid[col][row] = 0;
+      } else if (state == 0 && neighbors == 3) {
+        newGrid[col][row] = 1;
       } else {
         newGrid[col][row] = state;
       }
@@ -298,7 +298,7 @@ function create2DArray(c, r) {
 }
 
 
-function cp(c, r, st) {    //col, row, state
+function cp(c, r, st) {     //col, row, state
   grid[(col + c + cols) % cols][(row + r + rows) % rows] = st;
 }
 
