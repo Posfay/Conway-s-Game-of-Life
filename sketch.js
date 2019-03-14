@@ -1,5 +1,5 @@
-const RESOLUTION = 8;
-const STROKEW = 0.5;
+const RESOLUTION = 1;
+const STROKEW = 0;
 
 let grid;             //[COLS][ROWS]
 let newGrid;
