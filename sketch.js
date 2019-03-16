@@ -228,12 +228,12 @@ function mousePrsd() {
   } else if (drawTool == 6) {
     for (let i = -1; i < 2; i++) {
       for (let j = -1; j < 7; j++) {
-        grid[(col+i+cols)%cols][(row+j+rows)%rows] = 1;
+        cp(i,j,1);
       }
     }
 
-    grid[(col+cols)%cols][(row+rows)%rows] = 0;
-    grid[(col+cols)%cols][(row+5+rows)%rows] = 0;
+    cp(0,0,0);
+    cp(0,5,0);
 
   } else if (drawTool == 7) {
     grid[(col+cols)%cols][(row+rows)%rows] = 1;
@@ -251,13 +251,13 @@ function generation() {
     for (let row = 0; row < rows; row++) {
 
       let state = grid[col][row];
-      let neighbors = countNeighbors(grid, col, row);
+      let nextState = countNeighbors(grid, col, row);
 
-      if (state == 1 && (neighbors < 2 || neighbors > 3)) {
+      if (state == 1 && nextState == 0) {         //dead
         newGrid[col][row] = 0;
-      } else if (state == 0 && neighbors == 3) {
+      } else if (state == 0 && nextState == 1) {  //birth
         newGrid[col][row] = 1;
-      } else {
+      } else {                                    //nothing changes
         newGrid[col][row] = state;
       }
     }
@@ -266,7 +266,7 @@ function generation() {
 }
 
 
-function countNeighbors(grid, x, y) {
+function countNeighbors(grid, x, y) {     // 0 = dead,    1 = birth,    9 = nothing changes
 
   let sum = 0;
 
@@ -276,12 +276,27 @@ function countNeighbors(grid, x, y) {
       let col = (x + i + cols) % cols;
       let row = (y + j + rows) % rows;
 
-      sum += grid[col][row];
+      if (!(i == 0 && j == 0)) {
+        sum += grid[col][row];
+      }
+
+      if (i == 1 && j == 0 && sum == 0) {
+        return 0;
+      }
+
+      if (sum > 3) {
+        return 0;
+      }
     }
   }
 
-  sum -= grid[x][y];
-  return sum;
+  if (sum < 2) {
+    return 0;   //dead
+  } else if (sum == 3) {
+    return 1;   //birth
+  } else {
+    return 9;   //nothing to do with it
+  }
 }
 
 function create2DArray(c, r) {
