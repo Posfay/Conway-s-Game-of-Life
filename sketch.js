@@ -1,4 +1,4 @@
-const RESOLUTION = 1;
+const RESOLUTION = 6;
 const STROKEW = 0;
 
 let grid;             //[COLS][ROWS]
