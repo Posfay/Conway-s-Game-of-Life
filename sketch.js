@@ -1,4 +1,4 @@
-const RESOLUTION = 6;
+const RESOLUTION = 3;
 const STROKEW = 0.5;
 
 let grid;             //[COLS][ROWS]
@@ -13,7 +13,7 @@ let drawTool = 1;      // 1 = single;  2 = glider;  3 = glider gun;
 
 
 function setup() {
-  cnv = createCanvas(800,600);
+  cnv = createCanvas(windowWidth, windowHeight);
   cnv.mousePressed(mousePrsd);
   frameRate(60);
 
