@@ -251,8 +251,9 @@ function mousePrsd() {
 function generation() {
   for (let col = 0; col < cols; col++) {
     for (let row = 0; row < rows; row++) {
-
-      newGrid[col][row] = countNeighbors(grid, col, row);
+      
+      let newState = countNeighbors(grid, col, row);
+      newGrid[col][row] = newState == 9 ? grid[col][row] : newState;
     }
   }
 
