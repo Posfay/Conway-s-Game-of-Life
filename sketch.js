@@ -19,6 +19,8 @@ function setup() {
 
   btn = createButton("Reset");
   btn.mousePressed(btnPressed);
+  
+  createP("Press P to toggle pause/run · Press 1-7 to change patterns · Click on a cell to place the selected pattern");
 
   p = createP("Paused");
   p2 = createP("Single");
@@ -250,16 +252,7 @@ function generation() {
   for (let col = 0; col < cols; col++) {
     for (let row = 0; row < rows; row++) {
 
-      let state = grid[col][row];
-      let nextState = countNeighbors(grid, col, row);
-
-      if (state == 1 && nextState == 0) {         //dead
-        newGrid[col][row] = 0;
-      } else if (state == 0 && nextState == 1) {  //birth
-        newGrid[col][row] = 1;
-      } else {                                    //nothing changes
-        newGrid[col][row] = state;
-      }
+      newGrid[col][row] = countNeighbors(grid, col, row);
     }
   }
 
